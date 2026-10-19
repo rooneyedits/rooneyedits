@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rooney Edits: video editing for reels, YouTube and more</title>
+<meta name="description" content="Short-form reels, YouTube edits, subtitles and thumbnails. Delivered in 48 hours, starting at ₹499.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23150F24'/%3E%3Crect x='6' y='9' width='12' height='5' rx='1.5' fill='%237C5CFF'/%3E%3Crect x='12' y='18' width='14' height='5' rx='1.5' fill='%23FF6B3D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#150F24; --paper:#221836; --ink:#F2EEFB; --muted:#B3A9CC; --edge:#4B3B75;
+  --blue:#7C5CFF; --pink:#FF6B3D; --amber:#2DD4E6; --mint:#6EE7B7;
+  --line:#4B3B75;
+  --head:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+
+/* header */
+header{padding:22px 0}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.logo{color:var(--ink);font-family:var(--head);font-weight:800;font-size:1.3rem;text-decoration:none;letter-spacing:-.01em}
+.nav a{font-weight:500;text-decoration:none;margin-left:22px;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding:44px 0 56px}
+h1{font-family:var(--head);font-weight:800;font-size:clamp(2.3rem,6.4vw,4.6rem);line-height:1.04;letter-spacing:-.025em;max-width:15ch}
+.hero p.lead{margin-top:22px;max-width:46ch;font-size:1.2rem;color:var(--muted)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid var(--ink);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.solid{background:var(--ink);color:#150F24}
+.btn.line{background:transparent;color:var(--ink)}
+
+/* timeline: the one memorable element */
+.timeline{margin-top:48px;background:var(--paper);border:2px solid var(--edge);border-radius:14px;padding:14px 14px 14px 52px;position:relative;overflow:hidden}
+.ruler{height:22px;margin-bottom:8px;background:repeating-linear-gradient(90deg,var(--line) 0 2px,transparent 2px 10%);-webkit-mask:linear-gradient(#000 0 40%,transparent 40%);mask:linear-gradient(#000 0 40%,transparent 40%)}
+.track{position:relative;height:46px;margin-bottom:8px}
+.track:last-of-type{margin-bottom:0}
+.tlabel{position:absolute;left:-40px;top:0;height:100%;display:flex;align-items:center;font-weight:700;font-size:.8rem;color:var(--muted);width:32px}
+.clip{position:absolute;top:0;height:100%;border-radius:8px;padding:0 12px;display:flex;align-items:center;font-weight:700;font-size:.92rem;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c-blue{background:var(--blue)} .c-pink{background:var(--pink)} .c-amber{background:var(--amber);color:#150F24} .c-mint{background:var(--mint);color:#150F24}
+.c-wave{left:0;width:100%;background:
+  repeating-linear-gradient(90deg,var(--mint) 0 3px,transparent 3px 7px);
+  -webkit-mask:linear-gradient(transparent 0 12%,#000 12% 88%,transparent 88%);mask:linear-gradient(transparent 0 12%,#000 12% 88%,transparent 88%);opacity:.75;border-radius:0}
+.playhead{position:absolute;top:10px;bottom:0;left:52px;width:2px;background:var(--pink);z-index:3;animation:sweep 2.6s cubic-bezier(.5,0,.2,1) forwards}
+.playhead::before{content:"";position:absolute;top:0;left:-6px;width:14px;height:14px;background:var(--pink);clip-path:polygon(0 0,100% 0,50% 100%)}
+@keyframes sweep{from{left:52px}to{left:calc(52px + (100% - 66px) * .62)}}
+.timeline.static .playhead{animation:none;left:calc(52px + (100% - 66px) * .62)}
+@media (prefers-reduced-motion:reduce){.playhead{animation:none;left:calc(52px + (100% - 66px) * .62)}.btn{transition:none}}
+
+/* sections */
+section{padding:56px 0}
+h2{font-family:var(--head);font-weight:800;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:10px}
+.sub{color:var(--muted);max-width:52ch;margin-bottom:30px}
+
+/* work */
+.reel-frame{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--ink)}
+.shorts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.short{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden}
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;color:#fff}
+.ph b{font-family:var(--head);font-size:1.25rem;line-height:1.15}
+.ph span{font-size:.9rem;opacity:.85;margin-top:4px}
+.p1{background:linear-gradient(160deg,var(--blue),#3b2a99)}
+.p2{background:linear-gradient(160deg,var(--pink),#a8381a)}
+.p3{background:linear-gradient(160deg,var(--mint),#1f8a64);color:#150F24}
+.p0{background:linear-gradient(135deg,#2d2150,var(--ink))}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:2px solid var(--edge);border-radius:14px;overflow:hidden;background:var(--paper)}
+.svc{padding:24px 26px;border-bottom:2px solid var(--edge);border-right:2px solid var(--edge)}
+.svc:nth-child(2n){border-right:0}
+.svc:nth-last-child(-n+2){border-bottom:0}
+.svc h3{font-family:var(--head);font-size:1.3rem;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.dot{width:14px;height:14px;border-radius:4px;flex:none}
+.svc p{color:var(--muted)}
+.terms{margin-top:22px;padding:22px 26px;border-radius:14px;background:var(--blue);color:#fff;display:flex;flex-wrap:wrap;gap:8px 40px;align-items:center;justify-content:space-between}
+.terms p{font-size:1.15rem}
+.terms strong{font-family:var(--head)}
+
+/* contact */
+.contact{text-align:left}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+footer{padding:30px 0 44px;color:var(--muted);font-size:.95rem}
+
+@media (max-width:720px){
+  .nav a{margin-left:14px}
+  .shorts{grid-template-columns:1fr 1fr}
+  .short:nth-child(3){grid-column:1/-1;aspect-ratio:16/9}
+  .services{grid-template-columns:1fr}
+  .svc,.svc:nth-child(2n){border-right:0;border-bottom:2px solid var(--edge)}
+  .svc:last-child{border-bottom:0}
+  .timeline{padding-left:44px}
+  .tlabel{left:-34px}
+  .clip{font-size:.78rem;padding:0 8px}
+  .hero{padding-top:24px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">Rooney Edits</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <h1>Video edits, delivered in 48 hours.</h1>
+      <p class="lead">I edit reels, YouTube videos, subtitles and thumbnails for creators and businesses. Edits start at ₹499.</p>
+      <div class="cta-row">
+        <a class="btn solid" href="https://wa.me/917983988196?text=Hi%20Rooney%20Edits%2C%20I%20want%20a%20video%20edited.">Message on WhatsApp</a>
+        <a class="btn line" href="#work">See my work</a>
+      </div>
+
+      <div class="timeline" id="timeline" role="img" aria-label="A video editing timeline showing reels, YouTube edits, captions and thumbnails">
+        <div class="ruler"></div>
+        <div class="track"><span class="tlabel">V2</span>
+          <div class="clip c-pink" style="left:8%;width:24%">Thumbnails</div>
+          <div class="clip c-amber" style="left:46%;width:36%">Subtitles and captions</div>
+        </div>
+        <div class="track"><span class="tlabel">V1</span>
+          <div class="clip c-blue" style="left:0;width:39%">Short-form reels</div>
+          <div class="clip c-blue" style="left:40.5%;width:59.5%;background:#5B3FD6">YouTube video edits</div>
+        </div>
+        <div class="track"><span class="tlabel">A1</span>
+          <div class="clip c-wave"></div>
+        </div>
+        <div class="playhead"></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <h2>Work</h2>
+      <p class="sub">A few recent edits. Tap play to watch.</p>
+
+      <!-- HOW TO ADD YOUR VIDEOS:
+           1. Upload each video to YouTube (Unlisted is fine).
+           2. Copy the ID from the link: youtube.com/watch?v=THIS_PART or youtube.com/shorts/THIS_PART
+           3. Paste it into the data-yt="" of the matching box below. The placeholder is replaced automatically.
+           Change the title and description text to match your video. -->
+      <div class="reel-frame frame" data-yt="">
+        <div class="ph p0"><b>Showreel</b><span>Add your best 30 to 60 second edit here</span></div>
+      </div>
+
+      <div class="shorts">
+        <div class="short frame" data-yt="">
+          <div class="ph p1"><b>Reel sample 1</b><span>Short-form reel</span></div>
+        </div>
+        <div class="short frame" data-yt="">
+          <div class="ph p2"><b>Reel sample 2</b><span>Captions and cuts</span></div>
+        </div>
+        <div class="short frame" data-yt="">
+          <div class="ph p3"><b>YouTube sample</b><span>Long-form edit</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <h2>What I edit</h2>
+      <p class="sub">Send raw footage and a short brief. You get a finished video back.</p>
+      <div class="services">
+        <div class="svc"><h3><span class="dot" style="background:var(--blue)"></span>Short-form reels</h3><p>Fast cuts, sound and pacing made for Instagram Reels, YouTube Shorts and TikTok.</p></div>
+        <div class="svc"><h3><span class="dot" style="background:#5B3FD6"></span>YouTube video edits</h3><p>Clean long-form edits with trimmed pauses, music and graphics that keep people watching.</p></div>
+        <div class="svc"><h3><span class="dot" style="background:var(--amber)"></span>Subtitles and captions</h3><p>Accurate, easy-to-read captions in English or Hindi, styled to fit your video.</p></div>
+        <div class="svc"><h3><span class="dot" style="background:var(--pink)"></span>Thumbnails</h3><p>Clear, high-contrast thumbnails designed to get the click.</p></div>
+      </div>
+      <div class="terms">
+        <p>Delivered within <strong>48 hours</strong>. Edits start at <strong>₹499</strong>.</p>
+        <a class="btn" style="background:#fff;border-color:#fff;color:#150F24" href="https://wa.me/917983988196?text=Hi%20Rooney%20Edits%2C%20I%20want%20a%20quote.">Get a quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Send me your first video</h2>
+      <p class="sub">The fastest way to reach me is WhatsApp. I reply to every message.</p>
+      <div class="links">
+        <a class="btn solid" href="https://wa.me/917983988196?text=Hi%20Rooney%20Edits%2C%20I%20want%20a%20video%20edited.">WhatsApp +91 79839 88196</a>
+        <a class="btn line" href="mailto:maiikramhoon@gmail.com">maiikramhoon@gmail.com</a>
+        <a class="btn line" href="https://instagram.com/rooneyedits5" target="_blank" rel="noopener">Instagram @rooneyedits5</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr">2026</span> Rooney Edits</div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.querySelectorAll('.frame').forEach(function (box) {
+  var id = (box.getAttribute('data-yt') || '').trim();
+  if (!id) return;
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?rel=0';
+  f.title = 'Rooney Edits sample video';
+  f.loading = 'lazy';
+  f.allow = 'accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+  f.allowFullscreen = true;
+  box.innerHTML = '';
+  box.appendChild(f);
+});
+</script>
+</body>
+</html>
